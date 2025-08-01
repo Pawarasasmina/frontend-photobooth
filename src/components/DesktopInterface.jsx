@@ -34,7 +34,7 @@ const DesktopInterface = () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
         const mediaStream = await navigator.mediaDevices.getUserMedia({
-          video: { width: 640, height: 480 },
+          video: { width: 1920, height: 1080 },
           audio: false
         });
         setStream(mediaStream);
