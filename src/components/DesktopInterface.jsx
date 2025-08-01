@@ -297,10 +297,8 @@ const DesktopInterface = () => {
   return (
     <StyledWrapper>
       <div className="brutalist-header">
-        <div className="brutalist-header__icon">
-          <Monitor />
-        </div>
-        <h1 className="brutalist-header__title">QR Camera Station</h1>
+       
+        <h1 className="brutalist-header__title">#SEDay2025</h1>
       </div>
       <p className="brutalist-header__desc">
         Professional remote camera control system. Scan the QR code with your mobile device to start capturing high-quality photos.
@@ -456,17 +454,21 @@ const DesktopInterface = () => {
 
 
 const StyledWrapper = styled.div`
-hmin-height: 100vh;
-background: #fff;
+min-height: 100vh;
+background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
 padding: 2rem;
-font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
+font-family: 'Inter', 'Space Grotesk', Arial, Helvetica, sans-serif;
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+color: #1f2937;
+letter-spacing: 0.02em;
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Recursive', Arial, Helvetica, sans-serif;
+    font-family: 'Inter', 'Recursive', Arial, Helvetica, sans-serif;
     font-weight: 900;
+    color: #ff6600;
+    letter-spacing: 0.04em;
   }
   .brutalist-header {
     display: flex;
@@ -474,9 +476,10 @@ justify-content: center;
     gap: 1rem;
     margin-bottom: 0.5rem;
     .brutalist-header__icon {
-      background: #000;
+      background: #ffffff;
       padding: 0.5rem;
       border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(41,111,187,0.08);
       svg {
         color: #fff;
         width: 2rem;
@@ -486,16 +489,19 @@ justify-content: center;
     .brutalist-header__title {
       font-size: 2.5rem;
       font-weight: 900;
-      color: #000;
-      text-transform: uppercase;
+      color: #296fbb;
+      
       letter-spacing: 2px;
+      font-family: 'Inter', 'Space Grotesk', Arial, Helvetica, sans-serif;
     }
   }
   .brutalist-header__desc {
-    font-size: 1.1rem;
-    color: #222;
+    font-size: 1.15rem;
+    color: #296fbb;
     margin-bottom: 2rem;
-    font-weight: 600;
+    font-weight: 500;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    letter-spacing: 0.02em;
   }
   .brutalist-main {
     display: flex;
@@ -512,12 +518,12 @@ justify-content: center;
     }
   }
   .brutalist-card {
-    border: 4px solid #000;
+    border: 3px solid #296fbb;
     background: #fff;
-    box-shadow: 10px 10px 0 #000;
+    box-shadow: 0 4px 24px rgba(41,111,187,0.08);
     padding: 1.5rem;
     margin-bottom: 1rem;
-    border-radius: 12px;
+    border-radius: 16px;
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -530,16 +536,17 @@ justify-content: center;
       display: flex;
       align-items: center;
       gap: 1rem;
-      border-bottom: 2px solid #000;
+      border-bottom: 2px solid #296fbb;
       padding-bottom: 1rem;
       margin-bottom: 1rem;
       .brutalist-card__icon {
-        background: #000;
+        background: linear-gradient(135deg, #296fbb 0%, #296fbb);
         padding: 0.5rem;
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
+        box-shadow: 0 2px 8px rgba(255,102,0,0.08);
         svg {
           color: #fff;
           width: 1.5rem;
@@ -548,20 +555,22 @@ justify-content: center;
       }
       .brutalist-card__alert {
         font-weight: 900;
-        color: #000;
+        color: #296fbb;
         font-size: 1.3rem;
         text-transform: uppercase;
+         font-family: 'Inter', 'Space Grotesk', Arial, Helvetica, sans-serif;
       }
     }
     .brutalist-card__message {
-      color: #000;
-      font-size: 1rem;
-      font-weight: 600;
+      color: #1f2937;
+      font-size: 1.05rem;
+      font-weight: 500;
       margin-bottom: 1rem;
-      border-bottom: 2px solid #000;
+      border-bottom: 2px solid #296fbb;
       padding-bottom: 1rem;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
       .brutalist-card__error {
-        color: #ff0000;
+        color: #ff6600;
         font-weight: bold;
         margin-top: 0.5rem;
         display: flex;
@@ -570,16 +579,17 @@ justify-content: center;
       .brutalist-card__qr {
         display: block;
         margin: 0.5rem auto;
-        border: 4px solid #000;
-        border-radius: 8px;
-        box-shadow: 5px 5px 0 #000;
+        border: 4px solid #296fbb;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(255,102,0,0.12);
         width: 180px;
         height: 180px;
         object-fit: contain;
+        background: #fff;
       }
       .brutalist-card__loading {
         text-align: center;
-        color: #888;
+        color: #296fbb;
         font-size: 1.1rem;
         font-weight: 700;
         margin: 1rem 0;
@@ -589,7 +599,7 @@ justify-content: center;
         align-items: center;
         gap: 0.5rem;
         font-weight: 700;
-        color: #000;
+        color: #296fbb;
         margin-top: 1rem;
         svg {
           width: 1.2rem;
@@ -598,22 +608,25 @@ justify-content: center;
       }
       .brutalist-card__info {
         margin-top: 1rem;
-        color: #296fbb;
+        color: #ff6600;
         font-weight: 700;
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        font-family: 'Inter', Arial, Helvetica, sans-serif;
       }
       .brutalist-card__last-capture {
-        font-size: 0.9rem;
-        color: #555;
+        font-size: 0.95rem;
+        color: #296fbb;
         margin-top: 0.5rem;
+        font-family: 'Inter', Arial, Helvetica, sans-serif;
       }
       .brutalist-card__captures {
         margin-top: 1rem;
         font-size: 1rem;
-        color: #000;
+        color: #ff6600;
         font-weight: 700;
+        font-family: 'Inter', Arial, Helvetica, sans-serif;
         .brutalist-card__captures-count {
           font-size: 1.3rem;
           color: #296fbb;
@@ -635,27 +648,31 @@ justify-content: center;
         width: 100%;
         padding: 0.75rem;
         text-align: center;
-        font-size: 1rem;
+        font-size: 1.05rem;
         font-weight: 700;
         text-transform: uppercase;
-        border: 3px solid #000;
+        border: 3px solid #296fbb;
         background: #fff;
-        color: #000;
+        color: #296fbb;
         position: relative;
         transition: all 0.2s ease;
-        box-shadow: 5px 5px 0 #000;
+        box-shadow: 0 2px 8px rgba(255,102,0,0.08);
         overflow: hidden;
         text-decoration: none;
         margin-bottom: 0.5rem;
         cursor: pointer;
+        border-radius: 8px;
+        font-family: 'Inter', Arial, Helvetica, sans-serif;
       }
       .brutalist-card__button--read {
-        background: #000;
+        background: #296fbb;
         color: #fff;
+        border-color: #296fbb;
       }
       .brutalist-card__button--mark {
-        background: #fff;
-        color: #000;
+        background: #296fbb
+        color: #fff;
+        border-color: #296fbb
       }
       .brutalist-card__button--disabled {
         background: #eee;
@@ -679,32 +696,32 @@ justify-content: center;
       }
       .brutalist-card__button:hover {
         transform: translate(-2px, -2px);
-        box-shadow: 7px 7px 0 #000;
+        box-shadow: 0 4px 16px rgba(41,111,187,0.12);
       }
       .brutalist-card__button--mark:hover {
         background: #296fbb;
         border-color: #296fbb;
         color: #fff;
-        box-shadow: 7px 7px 0 #004280;
+        box-shadow: 0 4px 16px rgba(255,102,0,0.12);
       }
       .brutalist-card__button--read:hover {
-        background: #ff0000;
-        border-color: #ff0000;
+        background: #ff6600;
+        border-color: #ff6600;
         color: #fff;
-        box-shadow: 7px 7px 0 #800000;
+        box-shadow: 0 4px 16px rgba(255,102,0,0.12);
       }
       .brutalist-card__button:active {
-        transform: translate(5px, 5px);
+        transform: translate(2px, 2px);
         box-shadow: none;
       }
     }
   }
   .brutalist-session {
     margin-top: 2rem;
-    border: 3px solid #000;
-    background: #f9f9f9;
-    box-shadow: 5px 5px 0 #000;
-    border-radius: 8px;
+    border: 3px solid #296fbb;
+    background: linear-gradient(135deg, #fff 0%, #296fbb 8%, #fff 100%);
+    box-shadow: 0 2px 12px rgba(41,111,187,0.08);
+    border-radius: 12px;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -717,22 +734,27 @@ justify-content: center;
       align-items: center;
       gap: 1rem;
       font-size: 1rem;
-      color: #222;
+      color: #296fbb;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
       .brutalist-session__label {
         font-weight: 700;
+        color: #ff6600;
       }
       .brutalist-session__id {
         font-family: monospace;
-        background: #eee;
+        background: #fff;
         padding: 0.3rem 0.7rem;
         border-radius: 6px;
         font-size: 1rem;
+        color: #296fbb;
+        border: 1px solid #ff6600;
       }
     }
     .brutalist-session__expire {
       font-size: 0.95rem;
-      color: #555;
+      color: #ff6600;
       margin-top: 0.5rem;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
     }
   }
 `;

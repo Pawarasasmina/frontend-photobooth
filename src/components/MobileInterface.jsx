@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Camera, Download, Smartphone, Wifi, WifiOff, CheckCircle, Zap, Image, Share2, RefreshCw, Power } from 'lucide-react';
 import io from 'socket.io-client';
 import bgframe from '../assets/bgframe.png';
+import logo from '../assets/logo.png';
 
 const MobileInterface = () => {
   const { sessionId } = useParams();
@@ -217,10 +218,10 @@ const MobileInterface = () => {
       )}
       <StyledWrapper>
         <div className="brutalist-header">
-          <div className="brutalist-header__icon">
-            <Smartphone />
+          <div className="brutalist-header__logo">
+            <img src={logo} alt="Logo" style={{ width: 48, height: 48, objectFit: 'contain', borderRadius: 12, background: '#fff', border: '2px solid #296fbb', boxShadow: '0 2px 8px #ff7f00' }} />
           </div>
-          <h1 className="brutalist-header__title">Mobile Camera Remote</h1>
+          <h1 className="brutalist-header__title">#SEDay2025 Mobile</h1>
         </div>
         <p className="brutalist-header__desc">
           Control the desktop camera from your mobile device
@@ -260,10 +261,23 @@ const MobileInterface = () => {
               </div>
               <div className="brutalist-card__message">
                 <a
-                  className={`brutalist-card__button brutalist-card__button--mark${connectionStatus !== 'connected' || isCapturing || countdown !== null ? ' brutalist-card__button--disabled' : ''}`}
+                  className={`brutalist-card__button brutalist-card__button--mark brutalist-card__button--capture${connectionStatus !== 'connected' || isCapturing || countdown !== null ? ' brutalist-card__button--disabled' : ''}`}
                   href="#"
                   onClick={e => {e.preventDefault(); requestCapture();}}
-                  style={{ pointerEvents: connectionStatus !== 'connected' || isCapturing || countdown !== null ? 'none' : 'auto', opacity: connectionStatus !== 'connected' || isCapturing || countdown !== null ? 0.5 : 1 }}
+                  style={{
+                    pointerEvents: connectionStatus !== 'connected' || isCapturing || countdown !== null ? 'none' : 'auto',
+                    opacity: connectionStatus !== 'connected' || isCapturing || countdown !== null ? 0.5 : 1,
+                    fontSize: '1.25rem',
+                    fontWeight: 900,
+                    letterSpacing: '1px',
+                    background: 'linear-gradient(90deg, #ff7f00 0%, #296fbb 100%)',
+                    color: '#fff',
+                    border: '4px solid #296fbb',
+                    boxShadow: '7px 7px 0 #ff7f00',
+                    textShadow: '0 2px 8px #296fbb',
+                    margin: '0.5rem 0',
+                    transition: 'all 0.2s',
+                  }}
                 >
                   {isCapturing ? <Zap style={{ marginRight: 8 }} /> : <Camera style={{ marginRight: 8 }} />}
                   {isCapturing ? 'Capturing...' : countdown !== null ? `Wait...` : 'Capture Photo'}
@@ -332,32 +346,39 @@ const StyledWrapper = styled.div`
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Recursive', Arial, Helvetica, sans-serif;
     font-weight: 900;
+    color: #296fbb;
+    letter-spacing: 2px;
   }
   .brutalist-header {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin-bottom: 0.5rem;
-    .brutalist-header__icon {
-      background: #000;
+    .brutalist-header__logo {
+      background: #fff;
       padding: 0.5rem;
-      border-radius: 8px;
-      svg {
-        color: #fff;
-        width: 2rem;
-        height: 2rem;
-      }
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #296fbb;
+      box-shadow: 0 2px 8px #ff7f00;
     }
     .brutalist-header__title {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 900;
-      color: #000;
+      color: #296fbb;
       text-transform: uppercase;
       letter-spacing: 2px;
+      background: linear-gradient(90deg, #ff7f00 0%, #296fbb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
     }
   }
   .brutalist-header__desc {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #222;
     margin-bottom: 2rem;
     font-weight: 600;
@@ -369,9 +390,9 @@ const StyledWrapper = styled.div`
     margin-bottom: 2rem;
   }
   .brutalist-card {
-    border: 4px solid #000;
+    border: 4px solid #296fbb;
     background: #fff;
-    box-shadow: 10px 10px 0 #000;
+    box-shadow: 10px 10px 0 #ff7f00;
     padding: 1.5rem;
     margin-bottom: 1rem;
     border-radius: 12px;
@@ -383,11 +404,11 @@ const StyledWrapper = styled.div`
       display: flex;
       align-items: center;
       gap: 1rem;
-      border-bottom: 2px solid #000;
+      border-bottom: 2px solid #296fbb;
       padding-bottom: 1rem;
       margin-bottom: 1rem;
       .brutalist-card__icon {
-        background: #000;
+        background: #296fbb;
         padding: 0.5rem;
         border-radius: 8px;
         display: flex;
@@ -401,20 +422,20 @@ const StyledWrapper = styled.div`
       }
       .brutalist-card__alert {
         font-weight: 900;
-        color: #000;
-        font-size: 1.1rem;
+        color: #296fbb;
+        font-size: 1.2rem;
         text-transform: uppercase;
       }
     }
     .brutalist-card__message {
-      color: #000;
+      color: #222;
       font-size: 1rem;
       font-weight: 600;
       margin-bottom: 1rem;
-      border-bottom: 2px solid #000;
+      border-bottom: 2px solid #296fbb;
       padding-bottom: 1rem;
       .brutalist-card__error {
-        color: #ff0000;
+        color: #ff7f00;
         font-weight: bold;
         margin-top: 0.5rem;
         display: flex;
@@ -423,9 +444,9 @@ const StyledWrapper = styled.div`
       .brutalist-card__qr {
         display: block;
         margin: 0.5rem auto;
-        border: 4px solid #000;
+        border: 4px solid #296fbb;
         border-radius: 8px;
-        box-shadow: 5px 5px 0 #000;
+        box-shadow: 5px 5px 0 #ff7f00;
         width: 180px;
         height: 180px;
         object-fit: contain;
@@ -446,14 +467,14 @@ const StyledWrapper = styled.div`
       .brutalist-card__captures {
         margin-top: 1rem;
         font-size: 1rem;
-        color: #000;
+        color: #296fbb;
         font-weight: 700;
         display: flex;
         align-items: center;
         gap: 0.5rem;
         .brutalist-card__captures-count {
           font-size: 1.1rem;
-          color: #296fbb;
+          color: #ff7f00;
           font-weight: 900;
           margin-right: 0.5rem;
         }
@@ -462,7 +483,7 @@ const StyledWrapper = styled.div`
     .brutalist-card__actions {
       margin-top: 1rem;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       gap: 0.5rem;
       .brutalist-card__button {
         display: block;
@@ -472,24 +493,24 @@ const StyledWrapper = styled.div`
         font-size: 1rem;
         font-weight: 700;
         text-transform: uppercase;
-        border: 3px solid #000;
+        border: 3px solid #296fbb;
         background: #fff;
-        color: #000;
+        color: #296fbb;
         position: relative;
         transition: all 0.2s ease;
-        box-shadow: 5px 5px 0 #000;
+        box-shadow: 5px 5px 0 #ff7f00;
         overflow: hidden;
         text-decoration: none;
         margin-bottom: 0.5rem;
         cursor: pointer;
       }
       .brutalist-card__button--read {
-        background: #000;
+        background: #296fbb;
         color: #fff;
       }
       .brutalist-card__button--mark {
         background: #fff;
-        color: #000;
+        color: #296fbb;
       }
       .brutalist-card__button--disabled {
         background: #eee;
@@ -513,19 +534,19 @@ const StyledWrapper = styled.div`
       }
       .brutalist-card__button:hover {
         transform: translate(-2px, -2px);
-        box-shadow: 7px 7px 0 #000;
+        box-shadow: 7px 7px 0 #ff7f00;
       }
       .brutalist-card__button--mark:hover {
         background: #296fbb;
         border-color: #296fbb;
         color: #fff;
-        box-shadow: 7px 7px 0 #004280;
+        box-shadow: 7px 7px 0 #ff7f00;
       }
       .brutalist-card__button--read:hover {
-        background: #ff0000;
-        border-color: #ff0000;
+        background: #ff7f00;
+        border-color: #ff7f00;
         color: #fff;
-        box-shadow: 7px 7px 0 #800000;
+        box-shadow: 7px 7px 0 #296fbb;
       }
       .brutalist-card__button:active {
         transform: translate(5px, 5px);
@@ -539,6 +560,7 @@ const StyledWrapper = styled.div`
     padding: 0.3rem 0.7rem;
     border-radius: 6px;
     font-size: 1rem;
+    color: #296fbb;
   }
 `;
 
