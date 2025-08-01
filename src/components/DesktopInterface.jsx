@@ -5,6 +5,7 @@ import { Camera, QrCode, Wifi, WifiOff, Users, Zap, Monitor, Smartphone, CheckCi
 import QRCode from 'qrcode';
 import io from 'socket.io-client';
 import bgframe from '../assets/bgframe.png';
+import logo from '../assets/logo.png';
 
 const DesktopInterface = () => {
   const [sessionId, setSessionId] = useState(null);
@@ -297,6 +298,9 @@ const DesktopInterface = () => {
   return (
     <StyledWrapper>
       <div className="brutalist-header">
+        <div className="brutalist-header__logo">
+          <img src={logo} alt="Logo" style={{ width: 56, height: 56, objectFit: 'contain', borderRadius: 12, background: '#fff', border: '2px solid #296fbb', boxShadow: '0 2px 8px #ff7f00' }} />
+        </div>
        
         <h1 className="brutalist-header__title">#SEDay2025</h1>
       </div>
@@ -304,8 +308,8 @@ const DesktopInterface = () => {
         Professional remote camera control system. Scan the QR code with your mobile device to start capturing high-quality photos.
       </p>
       <div className="brutalist-main">
-      {/* Hidden frame image for merging */}
-      <img ref={frameImg} src={bgframe} alt="Frame" style={{ display: 'none' }} crossOrigin="anonymous" />
+        {/* Hidden frame image for merging */}
+        <img ref={frameImg} src={bgframe} alt="Frame" style={{ display: 'none' }} crossOrigin="anonymous" />
         {/* Show QR and connection status when idle or not connected */}
         {(!mobileConnected || connectionStatus === 'idle') && (
           <>
@@ -398,16 +402,14 @@ const DesktopInterface = () => {
 
               </div>
               <div className="brutalist-card__actions">
-                <a
+                <StyledCaptureButton
                   ref={captureBtnRef}
-                  className={`brutalist-card__button brutalist-card__button--mark${!mobileConnected || connectionStatus === 'capturing' ? ' brutalist-card__button--disabled' : ''}`}
-                  href="#"
+                  disabled={!mobileConnected || connectionStatus === 'capturing'}
                   onClick={e => {e.preventDefault(); captureImage();}}
-                  style={{ pointerEvents: !mobileConnected || connectionStatus === 'capturing' ? 'none' : 'auto', opacity: !mobileConnected || connectionStatus === 'capturing' ? 0.5 : 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}
                 >
-                  <Camera />
-                  <span style={{ fontWeight: 700 }}>{connectionStatus === 'capturing' ? 'Capturing...' : 'Capture Photo'}</span>
-                </a>
+                  <Camera style={{ marginRight: 10 }} />
+                  <span>{connectionStatus === 'capturing' ? 'Capturing...' : 'Capture Photo'}</span>
+                </StyledCaptureButton>
                 
                 <a
                   className={`brutalist-card__button brutalist-card__button--read${!mergedImage ? ' brutalist-card__button--disabled' : ''}`}
@@ -473,13 +475,22 @@ letter-spacing: 0.02em;
   .brutalist-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.2rem;
     margin-bottom: 0.5rem;
+    .brutalist-header__logo {
+      background: #fff;
+      padding: 0.3rem;
+      border-radius: 12px;
+     
+     
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .brutalist-header__icon {
-      background: #ffffff;
+      background: linear-gradient(135deg, #296fbb 60%, #ff7f00 100%);
       padding: 0.5rem;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(41,111,187,0.08);
       svg {
         color: #fff;
         width: 2rem;
@@ -490,8 +501,9 @@ letter-spacing: 0.02em;
       font-size: 2.5rem;
       font-weight: 900;
       color: #296fbb;
-      
+      text-transform: uppercase;
       letter-spacing: 2px;
+      text-shadow: 1px 1px 0 #fff, 2px 2px 0 #ff7f00;
       font-family: 'Inter', 'Space Grotesk', Arial, Helvetica, sans-serif;
     }
   }
@@ -756,6 +768,48 @@ letter-spacing: 0.02em;
       margin-top: 0.5rem;
       font-family: 'Inter', Arial, Helvetica, sans-serif;
     }
+  }
+`;
+
+
+const StyledCaptureButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  border: 4px solid #ff6600;
+  background: linear-gradient(135deg, #fff 60%, #ff6600 100%);
+  color: #296fbb;
+  box-shadow: 0 4px 16px rgba(255,102,0,0.12);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.04em;
+  position: relative;
+  outline: none;
+  &:hover {
+    background: linear-gradient(135deg, #ff6600 60%, #fff 100%);
+    color: #fff;
+    border-color: #296fbb;
+    box-shadow: 0 6px 24px rgba(41,111,187,0.18);
+    transform: translate(-2px, -2px);
+  }
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
+  &:disabled {
+    background: #eee;
+    color: #aaa;
+    border-color: #aaa;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
   }
 `;
 
