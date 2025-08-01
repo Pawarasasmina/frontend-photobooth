@@ -98,6 +98,7 @@ const DesktopInterface = () => {
           console.log('Mobile disconnected');
           setMobileConnected(false);
           setConnectionStatus('idle');
+          setMergedImage(null); // Clear captured image on disconnect
         });
         
 
@@ -354,7 +355,7 @@ const DesktopInterface = () => {
         )}
         {/* Show camera interface only when mobile is connected */}
         {mobileConnected && connectionStatus !== 'idle' && (
-          <div className="brutalist-card">
+          <div className="brutalist-card" style={{ maxWidth: '900px', width: '100%' }}>
             <div className="brutalist-card__header">
               <div className="brutalist-card__icon"><Camera /></div>
               <div className="brutalist-card__alert">Camera Preview</div>
@@ -362,26 +363,36 @@ const DesktopInterface = () => {
             <div className="brutalist-card__message">
               <div className="brutalist-card__video">
                 {connectionStatus === 'capturing' ? (
-                  <div style={{ width: '100%', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff', border: '2px solid #000' }}>
+                  <div style={{ width: '100%', maxWidth: '900px', height: '675px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff', border: '2px solid #000' }}>
                     <Loader />
                   </div>
                 ) : (
-                  <div style={{ position: 'relative', width: '100%', height: '240px' }}>
-                    <video
-                      ref={videoRef}
-                      autoPlay
-                      playsInline
-                      muted
-                      style={{ width: '100%', height: '240px', objectFit: 'cover', border: '2px solid #000', background: '#222' }}
-                    />
-                    {/* Frame overlay */}
-                    <img
-                      src={bgframe}
-                      alt="Frame Overlay"
-                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '240px', pointerEvents: 'none' }}
-                    />
-                    <canvas ref={canvasRef} style={{ display: 'none' }} />
-                  </div>
+                  mergedImage ? (
+                    <div style={{ position: 'relative', width: '100%', maxWidth: '900px', height: '675px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff', border: '2px solid #000' }}>
+                      <img
+                        src={mergedImage}
+                        alt="Captured Preview"
+                        style={{ width: '100%', height: '675px', objectFit: 'cover', border: '2px solid #000', background: '#222', maxWidth: '900px' }}
+                      />
+                    </div>
+                  ) : (
+                    <div style={{ position: 'relative', width: '100%', maxWidth: '900px', height: '675px' }}>
+                      <video
+                        ref={videoRef}
+                        autoPlay
+                        playsInline
+                        muted
+                        style={{ width: '100%', height: '675px', objectFit: 'cover', border: '2px solid #000', background: '#222', maxWidth: '900px' }}
+                      />
+                      {/* Frame overlay */}
+                      <img
+                        src={bgframe}
+                        alt="Frame Overlay"
+                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '675px', pointerEvents: 'none', maxWidth: '900px' }}
+                      />
+                      <canvas ref={canvasRef} style={{ display: 'none' }} />
+                    </div>
+                  )
                 )}
 
               </div>
@@ -401,7 +412,7 @@ const DesktopInterface = () => {
                   className={`brutalist-card__button brutalist-card__button--read${!mergedImage ? ' brutalist-card__button--disabled' : ''}`}
                   href={mergedImage}
                   download={`se-day-photo-${Date.now()}.png`}
-                  style={{ pointerEvents: !mergedImage ? 'none' : 'auto', opacity: !mergedImage ? 0.5 : 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}
+                  style={{ pointerEvents: !mergedImage ? 'none' : 'auto', opacity: !mergedImage ? 0.5 : 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', maxWidth: '900px', width: '100%' }}
                 >
                   <Camera />
                   <span style={{ fontWeight: 700 }}>Download Photo with Frame</span>
