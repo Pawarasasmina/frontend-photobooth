@@ -270,13 +270,12 @@ const MobileInterface = () => {
                     fontSize: '1.25rem',
                     fontWeight: 900,
                     letterSpacing: '1px',
-                    background: 'linear-gradient(90deg, #ff7f00 0%, #296fbb 100%)',
+                    background: '#296fbb',
                     color: '#fff',
                     border: '4px solid #296fbb',
                     boxShadow: '7px 7px 0 #ff7f00',
                     textShadow: '0 2px 8px #296fbb',
                     margin: '0.5rem 0',
-                    transition: 'all 0.2s',
                   }}
                 >
                   {isCapturing ? <Zap style={{ marginRight: 8 }} /> : <Camera style={{ marginRight: 8 }} />}

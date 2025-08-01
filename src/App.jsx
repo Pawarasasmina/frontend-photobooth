@@ -83,27 +83,32 @@ const MobileRedirect = () => {
   return (
     <StyledMobileRedirect>
       <div className="brutalist-header">
-        <div className="brutalist-header__icon">📱</div>
-        <h1 className="brutalist-header__title">Mobile Camera Remote</h1>
+        <div className="brutalist-header__icon" style={{background:'#296fbb', color:'#fff'}}>
+          <span role="img" aria-label="Thank you">�</span>
+        </div>
+        <h1 className="brutalist-header__title" style={{background:'linear-gradient(90deg, #ff7f00 0%, #296fbb 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', textFillColor:'transparent'}}>Thank You for Participating!</h1>
       </div>
-      <p className="brutalist-header__desc">
-        Control the desktop camera from your mobile device
+      <p className="brutalist-header__desc" style={{fontSize:'1.2rem', color:'#296fbb', fontWeight:700}}>
+        You have successfully completed your photo session.<br/>
+        We appreciate your participation in #SEDay2025.<br/>
+        <span style={{color:'#ff7f00'}}>Have a wonderful day!</span>
       </p>
       <div className="brutalist-main">
-        <div className="brutalist-card">
+        <div className="brutalist-card" style={{borderColor:'#296fbb', boxShadow:'10px 10px 0 #ff7f00'}}>
           <div className="brutalist-card__header">
-            <div className="brutalist-card__icon">🎯</div>
-            <div className="brutalist-card__alert">How to connect:</div>
+            <div className="brutalist-card__icon" style={{background:'#ff7f00', color:'#fff'}}>
+              �
+            </div>
+            <div className="brutalist-card__alert" style={{color:'#296fbb'}}>Session Ended</div>
           </div>
-          <div className="brutalist-card__message">
-            <ol className="brutalist-card__steps">
-              <li><span className="brutalist-card__step">1</span> Open this website on a desktop computer</li>
-              <li><span className="brutalist-card__step">2</span> Scan the QR code with your mobile device</li>
-              <li><span className="brutalist-card__step">3</span> Start capturing amazing photos remotely!</li>
-            </ol>
+          <div className="brutalist-card__message" style={{color:'#296fbb', fontWeight:700}}>
+            Thank you for using the QR Camera Station.<br/>
+            If you want to start a new session, please refresh or return to the home page.
+          </div>
+          <div className="brutalist-card__actions">
+            <a className="brutalist-card__button brutalist-card__button--mark" href="/" style={{background:'#296fbb', color:'#fff', borderColor:'#296fbb'}}>Go to Home</a>
           </div>
         </div>
-       
       </div>
     </StyledMobileRedirect>
   );
