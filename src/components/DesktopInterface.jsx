@@ -54,7 +54,7 @@ const DesktopInterface = () => {
   // Generate new session
   const generateNewSession = async () => {
     try {
-      const response = await fetch('/api/generate-session', {
+      const response = await fetch('https://backend-photobooth-production.up.railway.app/api/generate-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
