@@ -82,7 +82,10 @@ const DesktopInterface = () => {
         setMobileConnected(false);
         
         // Connect to socket
-        const newSocket = io('/', {
+        const socketUrl = process.env.NODE_ENV === 'production'
+          ? 'https://backend-photobooth-production.up.railway.app'
+          : '/';
+        const newSocket = io(socketUrl, {
           transports: ['websocket', 'polling']
         });
         
