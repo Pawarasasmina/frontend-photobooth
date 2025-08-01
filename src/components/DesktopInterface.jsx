@@ -19,6 +19,7 @@ const DesktopInterface = () => {
   const [lastCaptureTime, setLastCaptureTime] = useState(null);
   const [multiCaptureActive, setMultiCaptureActive] = useState(false);
   const [multiCaptureCount, setMultiCaptureCount] = useState(3); // Default to 3 photos
+  const [countdown, setCountdown] = useState(null); // null or number for countdown
   
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -109,13 +110,24 @@ const DesktopInterface = () => {
         // Listen for capture_image event from mobile and trigger the capture button click
         newSocket.on('capture_image', () => {
           console.log('Capture request received');
-          // If the button is enabled, trigger its click
-          if (captureBtnRef.current && !captureBtnRef.current.disabled) {
-            captureBtnRef.current.click();
-          } else {
-            // fallback: call captureImage directly
-            captureImage();
-          }
+          // Start countdown
+          setCountdown(3);
+          let count = 3;
+          const interval = setInterval(() => {
+            setCountdown(count);
+            if (count === 1) {
+              clearInterval(interval);
+              setCountdown(null);
+              // If the button is enabled, trigger its click
+              if (captureBtnRef.current && !captureBtnRef.current.disabled) {
+                captureBtnRef.current.click();
+              } else {
+                // fallback: call captureImage directly
+                captureImage();
+              }
+            }
+            count--;
+          }, 1000);
         });
         
         newSocket.on('session_ended', () => {
@@ -296,7 +308,33 @@ const DesktopInterface = () => {
   };
 
   return (
-    <StyledWrapper>
+    <>
+      {countdown !== null && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(41, 111, 187, 0.9)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999,
+          flexDirection: 'column'
+        }}>
+      
+          <p style={{
+            color: '#fff',
+            fontSize: '1.5rem',
+            fontWeight: 600,
+            marginTop: '1rem',
+            textAlign: 'center',
+            opacity: 0.9
+          }}>Get ready for your photo!</p>
+        </div>
+      )}
+      <StyledWrapper>
       <div className="brutalist-header">
         <div className="brutalist-header__logo">
           <img src={logo} alt="Logo" style={{ width: 56, height: 56, objectFit: 'contain', borderRadius: 12, background: '#fff', border: '2px solid #296fbb', boxShadow: '0 2px 8px #ff7f00' }} />
@@ -451,6 +489,7 @@ const DesktopInterface = () => {
         </div>
       )}
     </StyledWrapper>
+    </>
   );
 };
 
