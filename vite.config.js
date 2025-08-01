@@ -11,17 +11,17 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
-      },
-      '/socket.io': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
-        ws: true,
-      },
-    },
-  },
+   server: {
+     proxy: {
+       '/api': {
+         target: 'https://backend-photobooth-production.up.railway.app',
+         changeOrigin: true,
+       },
+       '/socket.io': {
+         target: 'https://backend-photobooth-production.up.railway.app',
+         changeOrigin: true,
+         ws: true,
+       },
+     },
+   },
 })
